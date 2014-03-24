@@ -1,0 +1,46 @@
+
+<html>
+
+	<head>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	</head>
+	
+	<body>
+			<ul>
+				<li>
+					First "li" with content
+				</li>
+				
+				<li>
+				</li>
+				
+				<li>
+					Second "li" with content
+				</li>
+				
+				<li>
+				</li>
+			</ul>
+			
+			<script>
+				// $.expr[':'] Is the object that contains the selector functions.
+				
+				//objNode: DOM node.
+				//intStackIndex: Dom node index.
+				//arrProperties: Properties of the selector used.
+				// arrNodeStack: The array of results of the selection
+				
+				// It creates a new function in the object, that will be the selector. This function has to return true or false
+				$.expr[':'].emptyContent = function(objNode, intStackIndex, arrProperties, arrNodeStack) {
+					var node = $(objNode);
+					
+					if(node.html().trim() == '') {
+						node.html('This element was empty. Now its filled by the example selector');
+						return true;
+					}
+					return false;
+				};
+				$('li:emptyContent').css('color', 'red');
+			</script>
+	</body>
+</html>
